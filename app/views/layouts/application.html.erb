@@ -5,12 +5,24 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container-fluid d-flex vh-100">
+      <div class="row align-self-stretch w-100">
+        <div class="col-md-2 mx-auto bg-dark text-white">
+          <div class="w-100 text-align-center d-flex justify-content-center mt-3">
+            <%= form_with(model: Chat.new) do |form| %>
+              <%= form.submit '+ New Chat', class: 'btn btn-dark border-light' %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-10">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
