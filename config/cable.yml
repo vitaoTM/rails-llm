@@ -1,7 +1,6 @@
 development:
-  # adapter: async
   adapter: redis
-  # url: <% ENV.fetch("REIS_URL") %>/1
+  url: <% ENV.fetch("REDIS_URL") %>/1
 
 test:
   adapter: test
