@@ -70,6 +70,6 @@ class ChatsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def chat_params
-      params.require(:chat).permit(:user_id, :history, :q_and_a)
+      params.require(:chat).permit(:message)
     end
 end
