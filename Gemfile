@@ -76,3 +76,5 @@ gem "jsbundling-rails", "~> 1.3"
 gem "dotenv-rails", "~> 3.1", :groups => [:development, :test]
 
 gem "ruby-openai", "~> 7.1"
+
+gem "sidekiq", "~> 7.3"
