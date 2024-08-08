@@ -1,7 +1,8 @@
 class Chat < ApplicationRecord
   belongs_to :user
 
-  attr_accessor :message
+  # attr_accessor :message
+  has_many :messages, dependent: :destroy
 
   def message=(message)
     self.history = { 'prompt' => message, 'history' => [] } if history.blank?
