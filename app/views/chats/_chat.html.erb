@@ -1,11 +1,34 @@
 <turbo-frame id="current-chat">
   <div id="<%= dom_id chat %>" class="container-fluid vh-75">
-  </div>
+    <div id="history-area" class="h-100">              <%# visualisation of chat%>
+      <% unless chat.q_and_a.blank? %>                 <%# visualisation of chat%>
+        <% chat.q_and_a.each do |question, answer| %>  <%# visualisation of chat%>
+          <div class="row mb-2">                       <%# visualisation of chat%>
+            <div class="col-md-1">                     <%# visualisation of chat%>
+              You                                      <%# visualisation of chat%>
+            </div>                                     <%# visualisation of chat%>
+            <div class="col">                          <%# visualisation of chat%>
+              <%= simple_format question %>            <%# visualisation of chat%>
+            </div>                                     <%# visualisation of chat%>
+          </div>                                       <%# visualisation of chat%>
+          <div class="row">                            <%# visualisation of chat%>
+            <div class="col-md-1">                     <%# visualisation of chat%>
+              A.I.                                     <%# visualisation of chat%>
+            </div>                                     <%# visualisation of chat%>
+            <div class="col">                          <%# visualisation of chat%>
+              <%= simple_format answer %>              <%# visualisation of chat%>
+            </div>                                     <%# visualisation of chat%>
+          </div>                                       <%# visualisation of chat%>
+        <% end %>                                      <%# visualisation of chat%>
+      <% end %>                                        <%# visualisation of chat%>
+    </div>                                             <%# visualisation of chat%>
+  </div>                                               <%# visualisation of chat%>
   <%= form_with(model: chat) do |form| %>
     <div class="input-gruop mb-3">
-      <%# <%= form.text_field :message, placeholder: "Send a message", class:'form-crontrol' %>
+      <%#= form.text_field :message, placeholder: "Send a message", class:'form-crontrol' %>
       <%= form.text_area :message, placeholder: "Send message", size: "100x1", class:'form-control' %>
       <button class="btn btn-outline-secondary btn-sm align-middle" type="submit" id="button-addon2">
+        <i class="fa-regular fa-paper-plane"></i>
         Send
       </button>
     </div>
