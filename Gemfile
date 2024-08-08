@@ -68,3 +68,7 @@ gem "devise", "~> 4.9"
 
 gem "annotate", "~> 3.2", :group => :development
 gem "letter_opener", "~> 1.10", :group => :development
+
+gem "cssbundling-rails", "~> 1.4"
+
+gem "jsbundling-rails", "~> 1.3"
