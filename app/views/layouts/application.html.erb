@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
     <title>RailsLlm</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%# <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
   <body>
@@ -15,9 +17,17 @@
         <div class="col-md-2 mx-auto bg-dark text-white">
           <div class="w-100 text-align-center d-flex justify-content-center mt-3">
             <%= form_with(model: Chat.new) do |form| %>
-              <%= form.submit '+ New Chat', class: 'btn btn-dark border-light' %>
+              <%= form.submit '+ New Chat', class: 'btn btn-dark border-light' if current_user.present? %>
             <% end %>
           </div>
+
+          <div class="mt-3">
+            <h5>Today:</h5>
+            <turbo-frame id="user-chats">
+              <%= render partial: 'chats/chat_list', collection: current_user.chats.reverse if current_user.present? %>
+            </turbo-frame>
+          </div>
+
         </div>
         <div class="col-10">
           <%= yield %>

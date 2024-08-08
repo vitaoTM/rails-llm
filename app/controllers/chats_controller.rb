@@ -3,7 +3,10 @@ class ChatsController < ApplicationController
 
   # GET /chats or /chats.json
   def index
-    @chats = Chat.all
+    @chats = Chat.none
+    if current_user.chats.any?
+      redirect_to chat_url(current_user.chats.last)
+    end
   end
 
   # GET /chats/1 or /chats/1.json
@@ -27,9 +30,11 @@ class ChatsController < ApplicationController
       if @chat.save
         format.html { redirect_to chat_url(@chat), notice: "Chat was successfully created." }
         format.json { render :show, status: :created, location: @chat }
+        format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @chat.errors, status: :unprocessable_entity }
+        format.turbo_stream
       end
     end
   end

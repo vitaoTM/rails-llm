@@ -1,17 +1,13 @@
-<div id="<%= dom_id chat %>">
-  <p>
-    <strong>User:</strong>
-    <%= chat.user_id %>
-  </p>
-
-  <p>
-    <strong>History:</strong>
-    <%= chat.history %>
-  </p>
-
-  <p>
-    <strong>Q and a:</strong>
-    <%= chat.q_and_a %>
-  </p>
-
-</div>
+<turbo-frame id="current-chat">
+  <div id="<%= dom_id chat %>" class="container-fluid vh-75">
+  </div>
+  <%= form_with(model: chat) do |form| %>
+    <div class="input-gruop mb-3">
+      <%# <%= form.text_field :message, placeholder: "Send a message", class:'form-crontrol' %>
+      <%= form.text_area :message, placeholder: "Send message", size: "100x1", class:'form-control' %>
+      <button class="btn btn-outline-secondary btn-sm align-middle" type="submit" id="button-addon2">
+        Send
+      </button>
+    </div>
+  <% end %>
+</turbo-frame>
